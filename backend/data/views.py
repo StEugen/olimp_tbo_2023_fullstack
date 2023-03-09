@@ -19,7 +19,7 @@ def extract_data_csv(filename):
         reader = csv.DictReader(csvfile)
         for row in reader:
             data.append({
-                
+                "id": row["id"],
             })
     return 
 
