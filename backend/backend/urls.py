@@ -19,7 +19,7 @@ from rest_framework import routers
 from data import views
 
 router = routers.DefaultRouter()
-router.register(r'data', views.data_view, 'dataview')
+router.register(r'data', views.DataViewset, 'dataview')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
