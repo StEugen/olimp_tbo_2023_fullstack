@@ -24,4 +24,7 @@ def extract_data_csv(filename):
     return 
 
 
+def upload_file(file):
+    pass
+
 
