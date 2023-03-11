@@ -6,6 +6,8 @@
 2. Make registration for users
 3. Make Login for users
 4. Setup comments in backend and db
+    - details: make model, and make it available in admin panel
+5. customize admin panel
 
 
 ## Frontend
@@ -13,3 +15,8 @@
 1. Make a prototype
 2. Make a diagram
 3. Make a table
+
+
+## General
+
+1. Make project in docker
