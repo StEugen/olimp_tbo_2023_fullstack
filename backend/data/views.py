@@ -20,7 +20,7 @@ def extract_data_csv(filename, header_row=0):
         head = next(reader)
         for i, row in enumerate(reader):
             if i == head:
-                continue  # skip header row
+                continue 
             record = {}
             for col_index, col_name in enumerate(head):
                 if col_index < len(row):
