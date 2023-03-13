@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from data.serializers import UserSerializer
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 
 
 current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -48,5 +49,13 @@ def upload_file(file):
 
 class UserCreateViewset(viewsets.ViewSet):
     """ Sends csv file to user """
-    def create_user(self, request):
+    def list(self, request, format='json'):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                token = Token.objects.create(user=user)
+                json = serializer.data
+                json["token"] = token.key
+                return Response(json, status=status.HTTP_201_CREATED)
         return JsonResponse({ "status": "ok"}, safe=False)
