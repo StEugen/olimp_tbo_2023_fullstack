@@ -1,10 +1,14 @@
 import csv, os
-from django.http import JsonResponse
-from rest_framework import viewsets
-from data.serializers import UserSerializer
-from django.contrib.auth.models import User
-from rest_framework import generics
 
+from django.http import JsonResponse
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+
+from rest_framework import viewsets, status, generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from data.serializers import UserSerializer
 
 
 current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -45,3 +49,16 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
 
+class LoginView(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(
+            username=username, password=password
+        )
+
+        if user:
+            login(request, user)
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
