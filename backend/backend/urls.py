@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework import routers
 from data import views
+from data.views import CreateUserView
 
 router = routers.DefaultRouter()
 router.register(r'data', views.DataViewset, 'dataview')
-router.register(r'createuser', views.UserCreateViewset, 'userview')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/register/', CreateUserView.as_view(), name='register'),
 ]

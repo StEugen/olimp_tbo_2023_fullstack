@@ -1,13 +1,10 @@
-from django.shortcuts import render
 import csv, os
 from django.http import JsonResponse
 from rest_framework import viewsets
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
 from data.serializers import UserSerializer
 from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
+from rest_framework import generics
+
 
 
 current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -43,19 +40,8 @@ def upload_file(file):
     pass
 
 
+class CreateUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
-
-
-class UserCreateViewset(viewsets.ViewSet):
-    """ Sends csv file to user """
-    def list(self, request, format='json'):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            if user:
-                token = Token.objects.create(user=user)
-                json = serializer.data
-                json["token"] = token.key
-                return Response(json, status=status.HTTP_201_CREATED)
-        return JsonResponse({ "status": "ok"}, safe=False)
