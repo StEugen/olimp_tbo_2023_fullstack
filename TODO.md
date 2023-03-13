@@ -13,8 +13,9 @@
 ## Frontend
 
 1. Make a prototype
-2. Make a diagram
-3. Make a table
+2. Make components suitable for solving the problem
+3. At least one component with diagram
+4. At least one component with table
 
 
 ## General
