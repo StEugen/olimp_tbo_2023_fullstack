@@ -2,7 +2,7 @@ import pandas as pd
 import psycopg2
 
 
-conn = psycopg2.connect(database="your_db_name", user="your_username", password="your_password", host="your_host", port="your_port")
+conn = psycopg2.connect(database="", user="", password="", host="", port="5432")
 
 
 df = pd.read_csv("your_csv_file.csv", delimiter=",")
@@ -10,7 +10,7 @@ df = pd.read_csv("your_csv_file.csv", delimiter=",")
 
 for index, row in df.iterrows():
     cursor = conn.cursor()
-    query = """INSERT INTO your_table_name (id, name, english_name, active, short_description, detailed_description, english_short_description, english_detailed_description, ...)
+    query = """INSERT INTO table_name (id, name, english_name, active, short_description, detailed_description, english_short_description, english_detailed_description, ...)
                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, ...);"""
     cursor.execute(query, (row["id:"], 
         row["Название:"], row["Название (in english):"], 
