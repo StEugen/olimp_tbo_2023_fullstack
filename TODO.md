@@ -5,9 +5,10 @@
 1. ~~Send csv to api~~
 2. ~~Make registration for users~~
 3. ~~Make Login for users~~
-4. Setup comments in backend and db
+4. ~~Setup comments in backend and db~~
     - details: make model, and make it available in admin panel
 5. customize admin panel
+6. Put info from csv to db
 
 
 ## Frontend

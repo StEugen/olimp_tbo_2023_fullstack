@@ -7,9 +7,10 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
-from data.serializers import UserSerializer
-
+from .serializers import UserSerializer, CommentSerializer
+from .models import Comment
 
 current_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -62,3 +63,17 @@ class LoginView(APIView):
             return Response(status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+class CommentCreateView(generics.CreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+class CommentListView(generics.ListAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
