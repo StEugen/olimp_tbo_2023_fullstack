@@ -13,10 +13,16 @@
 
 ## Frontend
 
-1. Make a prototype
-2. Make components suitable for solving the problem
-3. At least one component with diagram
-4. At least one component with table
+1. ~~Make a prototype~~
+2. ~~Rewrite public/manifest.json and public/index.html~~
+3. ~~Write a Header component~~
+4. ~~Write a MainWrapper component~~
+5. Write a Table component
+6. Write a Diagram component
+7. Write a Graphic component
+8. Write a Comment component
+9. Write a Footer component
+10. ~~Write a theme~~ 
 
 
 ## General
